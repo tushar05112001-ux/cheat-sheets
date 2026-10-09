@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>JavaScript Cheat Sheet</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div id="navbar"></div>
+
+    <main>
+        <h1>JavaScript Cheat Sheet</h1>
+
+        <h2>Variables</h2>
+
+        <pre><code>
+let name = "Tushar";
+const age = 24;
+var city = "Delhi";
+        </code></pre>
+
+        <h2>Data Types</h2>
+
+        <pre><code>
+String
+Number
+Boolean
+Undefined
+Null
+Object
+Array
+Symbol
+BigInt
+        </code></pre>
+
+        <h2>Input</h2>
+
+        <pre><code>
+const value = document.querySelector("#input").value;
+        </code></pre>
+
+        <h2>Conditions</h2>
+
+        <pre><code>
+if (age >= 18) {
+    console.log("Adult");
+} else {
+    console.log("Minor");
+}
+        </code></pre>
+
+        <h2>Loops</h2>
+
+        <pre><code>
+for (let i = 0; i < 5; i++) {
+    console.log(i);
+}
+
+while (condition) {
+    // code
+}
+        </code></pre>
+
+        <h2>Functions</h2>
+
+        <pre><code>
+function add(a, b) {
+    return a + b;
+}
+
+const multiply = (a, b) => {
+    return a * b;
+};
+        </code></pre>
+
+        <h2>Arrays</h2>
+
+        <pre><code>
+const fruits = ["Apple", "Banana", "Mango"];
+
+fruits.push("Orange");
+fruits.pop();
+
+fruits.map(item => console.log(item));
+
+fruits.filter(item => item !== "Apple");
+        </code></pre>
+
+        <h2>Objects</h2>
+
+        <pre><code>
+const user = {
+    name: "Tushar",
+    age: 24
+};
+
+console.log(user.name);
+        </code></pre>
+
+        <h2>DOM</h2>
+
+        <pre><code>
+const element = document.querySelector("#title");
+
+element.textContent = "Hello";
+
+element.classList.add("active");
+
+element.addEventListener("click", () => {
+    console.log("Clicked");
+});
+        </code></pre>
+
+        <h2>Fetch API</h2>
+
+        <pre><code>
+fetch("https://example.com/api")
+    .then(response => response.json())
+    .then(data => {
+        console.log(data);
+    })
+    .catch(error => {
+        console.log(error);
+    });
+        </code></pre>
+
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

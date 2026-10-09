@@ -1,0 +1,217 @@
+/* =========================
+   Global
+   ========================= */
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f5f5f5;
+    color: #222;
+    line-height: 1.6;
+}
+
+
+/* =========================
+   Navbar
+   ========================= */
+#navbar {
+    position: sticky;
+    top: 0;
+    z-index: 9999;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    padding: 15px 25px;
+
+    background: #222;
+    border-bottom: 3px solid #444;
+
+ /*   position: sticky;
+    top: 0px;
+    z-index: 1000;*/
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+
+    padding: 8px 14px;
+
+    border-radius: 6px;
+
+    transition: background 0.2s ease;
+}
+
+nav a:hover {
+    background: #444;
+}
+
+
+/* =========================
+   Main Content
+   ========================= */
+
+main {
+    width: min(100% - 30px, 1000px);
+
+    margin: 40px auto;
+}
+
+h1 {
+    font-size: 2.2rem;
+    margin-bottom: 10px;
+}
+
+h2 {
+    margin-top: 35px;
+    padding-bottom: 6px;
+
+    border-bottom: 2px solid #ddd;
+}
+
+p {
+    color: #555;
+}
+
+
+/* =========================
+   Links
+   ========================= */
+
+a {
+    color: #0066cc;
+}
+
+main a {
+    text-decoration: none;
+}
+
+main a:hover {
+    text-decoration: underline;
+}
+
+
+/* =========================
+   Cheat Sheet List
+   ========================= */
+
+ul {
+    padding-left: 0;
+    list-style: none;
+}
+
+li {
+    margin: 10px 0;
+}
+
+li a {
+    display: block;
+
+    padding: 12px 15px;
+
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+
+    transition: transform 0.15s ease,
+                box-shadow 0.15s ease;
+}
+
+li a:hover {
+    transform: translateY(-2px);
+
+    text-decoration: none;
+
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+
+/* =========================
+   Code Blocks
+   ========================= */
+
+pre {
+    overflow-x: auto;
+
+    margin: 15px 0;
+
+    padding: 18px;
+
+    background: #1e1e1e;
+    color: #f5f5f5;
+
+    border-radius: 8px;
+
+    border: 1px solid #333;
+
+    font-family: Consolas, Monaco, "Courier New", monospace;
+
+    font-size: 14px;
+
+    line-height: 1.5;
+
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.12);
+}
+
+code {
+    font-family: inherit;
+}
+
+
+/* =========================
+   Mobile
+   ========================= */
+
+@media (max-width: 600px) {
+
+
+    nav {
+        padding: 10px;
+
+        gap: 5px;
+
+        overflow-x: auto;
+
+        white-space: nowrap;
+    }
+
+    nav a {
+        padding: 7px 10px;
+
+        font-size: 14px;
+    }
+
+    main {
+        width: calc(100% - 20px);
+
+        margin: 25px auto;
+    }
+
+    h1 {
+        font-size: 1.8rem;
+    }
+
+    h2 {
+        font-size: 1.3rem;
+    }
+
+    pre {
+        padding: 12px;
+
+        font-size: 13px;
+
+        border-radius: 6px;
+    }
+}

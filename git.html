@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Git Cheat Sheet</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div id="navbar"></div>
+
+    <main>
+        <h1>Git Cheat Sheet</h1>
+
+        <h2>Configure Git</h2>
+
+        <pre><code>
+git config --global user.name "Your Name"
+
+git config --global user.email "you@example.com"
+
+git config --list
+        </code></pre>
+
+        <h2>Create Repository</h2>
+
+        <pre><code>
+git init
+        </code></pre>
+
+        <h2>Check Status</h2>
+
+        <pre><code>
+git status
+        </code></pre>
+
+        <h2>Add Files</h2>
+
+        <pre><code>
+git add file.txt
+
+git add .
+
+git add *.js
+        </code></pre>
+
+        <h2>Commit</h2>
+
+        <pre><code>
+git commit -m "Add new feature"
+        </code></pre>
+
+        <h2>View Commits</h2>
+
+        <pre><code>
+git log
+
+git log --oneline
+        </code></pre>
+
+        <h2>Branches</h2>
+
+        <pre><code>
+git branch
+
+git branch feature
+
+git switch feature
+
+git switch -c feature
+        </code></pre>
+
+        <h2>Merge</h2>
+
+        <pre><code>
+git switch main
+
+git merge feature
+        </code></pre>
+
+        <h2>Remote Repository</h2>
+
+        <pre><code>
+git remote -v
+
+git remote add origin &lt;repository-url&gt;
+        </code></pre>
+
+        <h2>Push</h2>
+
+        <pre><code>
+git push origin main
+
+git push -u origin main
+        </code></pre>
+
+        <h2>Pull</h2>
+
+        <pre><code>
+git pull origin main
+        </code></pre>
+
+        <h2>Clone</h2>
+
+        <pre><code>
+git clone &lt;repository-url&gt;
+        </code></pre>
+
+        <h2>Undo Changes</h2>
+
+        <pre><code>
+git restore file.txt
+
+git restore --staged file.txt
+        </code></pre>
+
+        <h2>Git Ignore</h2>
+
+        <pre><code>
+# .gitignore
+
+node_modules/
+.env
+*.log
+        </code></pre>
+
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
