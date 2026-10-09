@@ -6,6 +6,7 @@ navbar.innerHTML = `
         <a href="javascript.html">JavaScript</a>
         <a href="react.html">React</a>
         <a href="git.html">Git</a>
+	<a href="mongodb.html">MongoDB</a>
     </nav>
 `;
 
