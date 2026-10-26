@@ -1,0 +1,981 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Express.js Cheat Sheet</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div id="navbar"></div>
+
+    <main>
+
+        <h1>Express.js Cheat Sheet</h1>
+
+        <p>
+            Express.js is a lightweight web framework for Node.js.
+            It simplifies building web servers, REST APIs, middleware
+            pipelines, and backend applications.
+        </p>
+
+        <!-- 1. Installation -->
+        <h2>1. Installation and Setup</h2>
+
+        <p>
+            <strong>Definition:</strong> Express is installed through npm
+            and used to create HTTP servers and handle incoming requests.
+        </p>
+
+        <pre><code>
+# Initialize a Node.js project
+npm init -y
+
+# Install Express
+npm install express
+
+# Install nodemon for development
+npm install --save-dev nodemon
+        </code></pre>
+
+        <p>
+            Create an <code>app.js</code> file:
+        </p>
+
+        <pre><code>
+const express = require("express");
+
+const app = express();
+const PORT = 3000;
+
+app.get("/", (req, res) => {
+    res.send("Hello from Express!");
+});
+
+app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+});
+        </code></pre>
+
+        <ul>
+            <li><strong>express():</strong> Creates an Express application.</li>
+            <li><strong>app.get():</strong> Registers a handler for GET requests.</li>
+            <li><strong>res.send():</strong> Sends a response to the client.</li>
+            <li><strong>app.listen():</strong> Starts the HTTP server.</li>
+        </ul>
+
+
+        <!-- 2. Modules -->
+        <h2>2. CommonJS and ES Modules</h2>
+
+        <p>
+            <strong>Definition:</strong> Node.js supports different module
+            systems for importing and exporting reusable code.
+        </p>
+
+        <p><strong>CommonJS:</strong></p>
+
+        <pre><code>
+// Import
+const express = require("express");
+
+// Export
+module.exports = app;
+
+// Import another file
+const router = require("./routes/userRoutes");
+        </code></pre>
+
+        <p><strong>ES Modules:</strong></p>
+
+        <pre><code>
+// Import
+import express from "express";
+
+// Export
+export default app;
+
+// Import another file
+import userRouter from "./routes/userRoutes.js";
+        </code></pre>
+
+        <p>
+            For ES Modules, configure <code>"type": "module"</code>
+            in <code>package.json</code>, or use the appropriate
+            <code>.mjs</code> file extension.
+        </p>
+
+
+        <!-- 3. HTTP Methods -->
+        <h2>3. HTTP Methods</h2>
+
+        <p>
+            <strong>Definition:</strong> HTTP methods describe the action
+            a client wants to perform on a server resource.
+        </p>
+
+        <ul>
+            <li><strong>GET:</strong> Retrieves data.</li>
+            <li><strong>POST:</strong> Submits data or creates a resource.</li>
+            <li><strong>PUT:</strong> Replaces a resource.</li>
+            <li><strong>PATCH:</strong> Partially updates a resource.</li>
+            <li><strong>DELETE:</strong> Deletes a resource.</li>
+        </ul>
+
+        <pre><code>
+app.get("/users", (req, res) => {
+    res.send("Get users");
+});
+
+app.post("/users", (req, res) => {
+    res.send("Create user");
+});
+
+app.put("/users/:id", (req, res) => {
+    res.send("Replace user");
+});
+
+app.patch("/users/:id", (req, res) => {
+    res.send("Update user");
+});
+
+app.delete("/users/:id", (req, res) => {
+    res.send("Delete user");
+});
+        </code></pre>
+
+
+        <!-- 4. Routing -->
+        <h2>4. Routing</h2>
+
+        <p>
+            <strong>Definition:</strong> Routing determines how the server
+            responds to requests based on the requested URL and HTTP method.
+        </p>
+
+        <pre><code>
+app.get("/", (req, res) => {
+    res.send("Home Page");
+});
+
+app.get("/about", (req, res) => {
+    res.send("About Page");
+});
+
+app.get("/contact", (req, res) => {
+    res.send("Contact Page");
+});
+        </code></pre>
+
+        <p>
+            Route handlers receive request and response objects.
+            They can send a response, pass control to another handler,
+            or invoke error handling.
+        </p>
+
+
+        <!-- 5. Request Object -->
+        <h2>5. Request Object (req)</h2>
+
+        <p>
+            <strong>Definition:</strong> The request object contains
+            information about the incoming HTTP request, including
+            parameters, query strings, headers, and body data.
+        </p>
+
+        <h3>Route Parameters</h3>
+
+        <p>
+            Route parameters identify specific resources in a URL.
+        </p>
+
+        <pre><code>
+app.get("/users/:id", (req, res) => {
+    const userId = req.params.id;
+
+    res.send(`User ID: ${userId}`);
+});
+        </code></pre>
+
+        <p>Request: <code>/users/25</code></p>
+
+        <p>Result: <code>User ID: 25</code></p>
+
+        <h3>Query Parameters</h3>
+
+        <p>
+            Query parameters are optional values supplied after
+            a question mark in the URL.
+        </p>
+
+        <pre><code>
+app.get("/search", (req, res) => {
+    const keyword = req.query.keyword;
+
+    res.json({ keyword });
+});
+        </code></pre>
+
+        <p>Request: <code>/search?keyword=javascript</code></p>
+
+        <h3>Request Body</h3>
+
+        <p>
+            The request body carries data submitted by the client.
+            Use body-parsing middleware to access JSON or form data.
+        </p>
+
+        <pre><code>
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+app.post("/users", (req, res) => {
+    const user = req.body;
+
+    res.json(user);
+});
+        </code></pre>
+
+        <ul>
+            <li><strong>req.params:</strong> Route parameters.</li>
+            <li><strong>req.query:</strong> Query-string parameters.</li>
+            <li><strong>req.body:</strong> Parsed request body.</li>
+            <li><strong>req.headers:</strong> Request headers.</li>
+            <li><strong>req.method:</strong> HTTP method.</li>
+            <li><strong>req.path:</strong> URL path without the query string.</li>
+        </ul>
+
+
+        <!-- 6. Response Object -->
+        <h2>6. Response Object (res)</h2>
+
+        <p>
+            <strong>Definition:</strong> The response object provides
+            methods for sending data, setting status codes, and returning
+            HTTP responses to clients.
+        </p>
+
+        <pre><code>
+res.send("Hello");
+
+res.json({ message: "Success" });
+
+res.status(200).json({ success: true });
+
+res.status(201).json({ message: "Created" });
+
+res.sendStatus(404);
+        </code></pre>
+
+        <ul>
+            <li><strong>res.send():</strong> Sends a response.</li>
+            <li><strong>res.json():</strong> Sends a JSON response.</li>
+            <li><strong>res.status():</strong> Sets the HTTP status code.</li>
+            <li><strong>res.sendStatus():</strong> Sets a status code and sends its standard status message.</li>
+            <li><strong>res.redirect():</strong> Redirects the client to another URL.</li>
+            <li><strong>res.set():</strong> Sets response headers.</li>
+        </ul>
+
+        <p>
+            A request should normally receive only one final response.
+            Sending multiple responses can cause a
+            "Cannot set headers after they are sent" error.
+        </p>
+
+
+        <!-- 7. Middleware -->
+        <h2>7. Middleware</h2>
+
+        <p>
+            <strong>Definition:</strong> Middleware functions execute
+            during the request-response cycle. They can inspect or modify
+            requests, send responses, or pass control to the next handler.
+        </p>
+
+        <pre><code>
+app.use((req, res, next) => {
+    console.log(req.method, req.url);
+
+    next();
+});
+        </code></pre>
+
+        <ul>
+            <li><strong>req:</strong> Incoming request object.</li>
+            <li><strong>res:</strong> Outgoing response object.</li>
+            <li><strong>next():</strong> Passes control to the next middleware or handler.</li>
+            <li><strong>app.use():</strong> Registers middleware.</li>
+        </ul>
+
+        <h3>Built-in Middleware</h3>
+
+        <pre><code>
+// Parse JSON requests
+app.use(express.json());
+
+// Parse URL-encoded form data
+app.use(express.urlencoded({ extended: true }));
+
+// Serve static files
+app.use(express.static("public"));
+        </code></pre>
+
+        <h3>Third-Party Middleware</h3>
+
+        <pre><code>
+npm install cors morgan
+        </code></pre>
+
+        <pre><code>
+const cors = require("cors");
+const morgan = require("morgan");
+
+app.use(cors());
+app.use(morgan("dev"));
+        </code></pre>
+
+        <ul>
+            <li><strong>cors:</strong> Configures Cross-Origin Resource Sharing.</li>
+            <li><strong>morgan:</strong> Logs HTTP requests.</li>
+        </ul>
+
+
+        <!-- 8. Modular Routing -->
+        <h2>8. Express Router</h2>
+
+        <p>
+            <strong>Definition:</strong> Express Router creates modular
+            route handlers that can be organized into separate files.
+            This makes large applications easier to maintain.
+        </p>
+
+        <p><strong>routes/userRoutes.js</strong></p>
+
+        <pre><code>
+const express = require("express");
+
+const router = express.Router();
+
+router.get("/", (req, res) => {
+    res.json({ message: "All users" });
+});
+
+router.get("/:id", (req, res) => {
+    res.json({ userId: req.params.id });
+});
+
+module.exports = router;
+        </code></pre>
+
+        <p><strong>app.js</strong></p>
+
+        <pre><code>
+const express = require("express");
+const userRoutes = require("./routes/userRoutes");
+
+const app = express();
+
+app.use("/users", userRoutes);
+        </code></pre>
+
+        <p>
+            The router now handles requests such as
+            <code>/users</code> and <code>/users/10</code>.
+        </p>
+
+
+        <!-- 9. Controllers -->
+        <h2>9. Controllers</h2>
+
+        <p>
+            <strong>Definition:</strong> Controllers contain the logic
+            used to process requests and produce responses. Separating
+            them from routes keeps route files easier to understand.
+        </p>
+
+        <p><strong>controllers/userController.js</strong></p>
+
+        <pre><code>
+exports.getUsers = (req, res) => {
+    res.json([
+        { id: 1, name: "Tushar" },
+        { id: 2, name: "Rahul" }
+    ]);
+};
+        </code></pre>
+
+        <p><strong>routes/userRoutes.js</strong></p>
+
+        <pre><code>
+const express = require("express");
+const router = express.Router();
+
+const {
+    getUsers
+} = require("../controllers/userController");
+
+router.get("/", getUsers);
+
+module.exports = router;
+        </code></pre>
+
+
+        <!-- 10. Status Codes -->
+        <h2>10. HTTP Status Codes</h2>
+
+        <p>
+            <strong>Definition:</strong> HTTP status codes indicate
+            whether a request succeeded, failed, or requires further action.
+        </p>
+
+        <ul>
+            <li><strong>200 OK:</strong> Request succeeded.</li>
+            <li><strong>201 Created:</strong> A resource was created.</li>
+            <li><strong>204 No Content:</strong> Request succeeded without a response body.</li>
+            <li><strong>400 Bad Request:</strong> Request data is invalid.</li>
+            <li><strong>401 Unauthorized:</strong> Authentication is missing or invalid.</li>
+            <li><strong>403 Forbidden:</strong> The client lacks permission.</li>
+            <li><strong>404 Not Found:</strong> Resource or route was not found.</li>
+            <li><strong>409 Conflict:</strong> Request conflicts with the current resource state.</li>
+            <li><strong>422 Unprocessable Content:</strong> Request content cannot be processed.</li>
+            <li><strong>429 Too Many Requests:</strong> Rate limit exceeded.</li>
+            <li><strong>500 Internal Server Error:</strong> An unexpected server error occurred.</li>
+            <li><strong>503 Service Unavailable:</strong> The service is temporarily unavailable.</li>
+        </ul>
+
+
+        <!-- 11. Error Handling -->
+        <h2>11. Error Handling</h2>
+
+        <p>
+            <strong>Definition:</strong> Error-handling middleware
+            catches errors and sends appropriate responses rather than
+            leaving requests unresolved.
+        </p>
+
+        <pre><code>
+// Route that produces an error
+app.get("/error", (req, res, next) => {
+    next(new Error("Something went wrong"));
+});
+
+// Error-handling middleware
+app.use((err, req, res, next) => {
+    console.error(err);
+
+    res.status(500).json({
+        message: "Internal server error"
+    });
+});
+        </code></pre>
+
+        <ul>
+            <li>Error middleware uses four parameters: <code>err, req, res, next</code>.</li>
+            <li>Register error-handling middleware after routes.</li>
+            <li>Do not expose stack traces or sensitive internal details to clients in production.</li>
+        </ul>
+
+        <h3>404 Handler</h3>
+
+        <pre><code>
+app.use((req, res) => {
+    res.status(404).json({
+        message: "Route not found"
+    });
+});
+        </code></pre>
+
+        <p>
+            Place the 404 handler after your regular routes and before
+            the error-handling middleware.
+        </p>
+
+
+        <!-- 12. Async Routes -->
+        <h2>12. Async/Await in Routes</h2>
+
+        <p>
+            <strong>Definition:</strong> Async route handlers allow
+            asynchronous operations, such as database queries, to be
+            awaited without blocking the event loop.
+        </p>
+
+        <pre><code>
+app.get("/users", async (req, res, next) => {
+    try {
+        const users = await getUsersFromDatabase();
+
+        res.json(users);
+    } catch (error) {
+        next(error);
+    }
+});
+        </code></pre>
+
+        <p>
+            Here, <code>getUsersFromDatabase()</code> represents an
+            asynchronous function you define elsewhere.
+        </p>
+
+        <p>
+            In Express 5, rejected Promises returned by route handlers
+            and middleware are automatically forwarded to error handling.
+            In Express 4, use try/catch with <code>next(error)</code>
+            or a compatible async error-handling wrapper.
+        </p>
+
+
+        <!-- 13. Environment Variables -->
+        <h2>13. Environment Variables (.env)</h2>
+
+        <p>
+            <strong>Definition:</strong> Environment variables store
+            configuration outside your source code, such as port numbers,
+            database connection strings, and secret keys.
+        </p>
+
+        <pre><code>
+npm install dotenv
+        </code></pre>
+
+        <p><strong>.env</strong></p>
+
+        <pre><code>
+PORT=3000
+DATABASE_URL=mongodb://127.0.0.1:27017/myapp
+        </code></pre>
+
+        <p><strong>app.js</strong></p>
+
+        <pre><code>
+require("dotenv").config();
+
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+});
+        </code></pre>
+
+        <p>
+            Add <code>.env</code> to <code>.gitignore</code>. Never
+            commit real secrets to a public repository.
+        </p>
+
+
+        <!-- 14. CORS -->
+        <h2>14. CORS</h2>
+
+        <p>
+            <strong>Definition:</strong> Cross-Origin Resource Sharing
+            (CORS) is a browser security mechanism that controls whether
+            frontend JavaScript can access responses from another origin.
+        </p>
+
+        <pre><code>
+const cors = require("cors");
+
+app.use(cors({
+    origin: "http://localhost:5173"
+}));
+        </code></pre>
+
+        <ul>
+            <li><strong>origin:</strong> Specifies which origin is allowed.</li>
+            <li><strong>credentials:</strong> Enables credentialed cross-origin requests when configured correctly.</li>
+        </ul>
+
+        <p>
+            Do not combine credentialed requests with a wildcard origin.
+            Configure the allowed frontend origin explicitly when using
+            cookies or other credentials.
+        </p>
+
+
+        <!-- 15. Cookies -->
+        <h2>15. Cookies</h2>
+
+        <p>
+            <strong>Definition:</strong> Cookies are small pieces of
+            data that a server can ask the browser to store and send
+            with subsequent matching requests.
+        </p>
+
+        <pre><code>
+npm install cookie-parser
+        </code></pre>
+
+        <pre><code>
+const cookieParser = require("cookie-parser");
+
+app.use(cookieParser());
+
+app.get("/set-cookie", (req, res) => {
+    res.cookie("theme", "dark", {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === "production",
+        sameSite: "lax",
+        maxAge: 24 * 60 * 60 * 1000
+    });
+
+    res.json({ message: "Cookie set" });
+});
+
+app.get("/read-cookie", (req, res) => {
+    res.json({
+        theme: req.cookies.theme
+    });
+});
+
+app.get("/clear-cookie", (req, res) => {
+    res.clearCookie("theme");
+
+    res.json({ message: "Cookie cleared" });
+});
+        </code></pre>
+
+        <ul>
+            <li><strong>httpOnly:</strong> Prevents client-side JavaScript from reading the cookie.</li>
+            <li><strong>secure:</strong> Sends the cookie only over HTTPS.</li>
+            <li><strong>sameSite:</strong> Controls when the browser sends the cookie in cross-site requests.</li>
+            <li><strong>maxAge:</strong> Sets the cookie lifetime in milliseconds.</li>
+        </ul>
+
+
+        <!-- 16. Sessions -->
+        <h2>16. Sessions</h2>
+
+        <p>
+            <strong>Definition:</strong> A session stores user-specific
+            state across multiple requests. Common session middleware
+            stores a session identifier in a cookie while session data
+            is held server-side.
+        </p>
+
+        <pre><code>
+npm install express-session
+        </code></pre>
+
+        <pre><code>
+const session = require("express-session");
+
+app.use(session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === "production",
+        sameSite: "lax",
+        maxAge: 60 * 60 * 1000
+    }
+}));
+
+app.post("/login-demo", (req, res) => {
+    req.session.userId = "123";
+
+    res.json({ message: "Session created" });
+});
+
+app.get("/profile-demo", (req, res) => {
+    if (!req.session.userId) {
+        return res.status(401).json({
+            message: "Not logged in"
+        });
+    }
+
+    res.json({
+        userId: req.session.userId
+    });
+});
+        </code></pre>
+
+        <p>
+            <strong>Security note:</strong> Set a strong session secret
+            using an environment variable. The default MemoryStore is
+            intended for development, not production. Use a suitable
+            persistent session store in production.
+        </p>
+
+
+        <!-- 17. Password Hashing -->
+        <h2>17. Password Hashing</h2>
+
+        <p>
+            <strong>Definition:</strong> Password hashing transforms
+            a password into a one-way hash so the original password
+            does not need to be stored in the database.
+        </p>
+
+        <pre><code>
+npm install bcrypt
+        </code></pre>
+
+        <pre><code>
+const bcrypt = require("bcrypt");
+
+async function hashPassword(password) {
+    return await bcrypt.hash(password, 12);
+}
+
+async function verifyPassword(password, hash) {
+    return await bcrypt.compare(password, hash);
+}
+        </code></pre>
+
+        <p>
+            Store the resulting hash, not the original password.
+            Use appropriate password policies and never log passwords.
+        </p>
+
+
+        <!-- 18. MongoDB -->
+        <h2>18. MongoDB with Mongoose</h2>
+
+        <p>
+            <strong>Definition:</strong> Mongoose is an object data
+            modeling library for MongoDB. It provides schemas, models,
+            validation, and methods for interacting with collections.
+        </p>
+
+        <pre><code>
+npm install mongoose
+        </code></pre>
+
+        <pre><code>
+const mongoose = require("mongoose");
+
+async function connectDB() {
+    await mongoose.connect(process.env.DATABASE_URL);
+
+    console.log("MongoDB connected");
+}
+
+const userSchema = new mongoose.Schema({
+    name: {
+        type: String,
+        required: true
+    },
+    email: {
+        type: String,
+        required: true,
+        unique: true
+    }
+});
+
+const User = mongoose.model("User", userSchema);
+
+async function getUsers() {
+    return await User.find();
+}
+        </code></pre>
+
+        <ul>
+            <li><strong>mongoose.connect():</strong> Connects to MongoDB.</li>
+            <li><strong>Schema:</strong> Defines document structure and validation rules.</li>
+            <li><strong>Model:</strong> Provides an interface for querying and modifying documents.</li>
+            <li><strong>find():</strong> Retrieves matching documents.</li>
+            <li><strong>findById():</strong> Retrieves a document by its ID.</li>
+            <li><strong>create():</strong> Creates a document.</li>
+            <li><strong>findByIdAndUpdate():</strong> Updates a document by ID.</li>
+            <li><strong>findByIdAndDelete():</strong> Deletes a document by ID.</li>
+        </ul>
+
+
+        <!-- 19. CRUD -->
+        <h2>19. CRUD Operations</h2>
+
+        <p>
+            <strong>Definition:</strong> CRUD stands for Create, Read,
+            Update, and Delete. These are the four basic operations
+            commonly used to manage application data.
+        </p>
+
+        <pre><code>
+// CREATE
+const user = await User.create({
+    name: "Tushar",
+    email: "tushar@example.com"
+});
+
+// READ
+const users = await User.find();
+const singleUser = await User.findById(user._id);
+
+// UPDATE
+const updatedUser = await User.findByIdAndUpdate(
+    user._id,
+    { name: "Updated Name" },
+    { new: true, runValidators: true }
+);
+
+// DELETE
+const deletedUser = await User.findByIdAndDelete(user._id);
+        </code></pre>
+
+        <p>
+            These examples require a connected database and a defined
+            Mongoose model. Validate incoming data and handle missing
+            records and database errors in real routes.
+        </p>
+
+
+        <!-- 20. Authentication -->
+        <h2>20. Authentication and Authorization</h2>
+
+        <p>
+            <strong>Authentication:</strong> Verifies who a user is.
+        </p>
+
+        <p>
+            <strong>Authorization:</strong> Determines what an authenticated
+            user is allowed to access or do.
+        </p>
+
+        <ul>
+            <li><strong>Passport.js:</strong> Provides authentication strategies for Express applications.</li>
+            <li><strong>Session authentication:</strong> Maintains login state using server-side session data.</li>
+            <li><strong>OAuth 2.0:</strong> A framework for delegated authorization.</li>
+            <li><strong>OpenID Connect:</strong> An identity layer built on OAuth 2.0.</li>
+            <li><strong>JWT:</strong> A token format that can carry signed claims.</li>
+        </ul>
+
+        <p>
+            Never assume that a request is authorized merely because
+            it contains a user ID. Verify authentication and check
+            permissions for protected resources.
+        </p>
+
+
+        <!-- 21. File Upload -->
+        <h2>21. File Uploads</h2>
+
+        <p>
+            <strong>Definition:</strong> File upload middleware processes
+            multipart form data sent by a client.
+        </p>
+
+        <pre><code>
+npm install multer
+        </code></pre>
+
+        <pre><code>
+const multer = require("multer");
+
+const upload = multer({
+    dest: "uploads/"
+});
+
+app.post("/upload", upload.single("file"), (req, res) => {
+    if (!req.file) {
+        return res.status(400).json({
+            message: "File is required"
+        });
+    }
+
+    res.json({
+        filename: req.file.filename,
+        size: req.file.size
+    });
+});
+        </code></pre>
+
+        <p>
+            For production, validate file size and type, restrict
+            acceptable content, and avoid trusting user-supplied filenames.
+            Configure storage and access controls appropriately.
+        </p>
+
+
+        <!-- 22. Environment and Production -->
+        <h2>22. Production Best Practices</h2>
+
+        <ul>
+            <li>Keep secrets and configuration in environment variables or a secure secret manager.</li>
+            <li>Validate and sanitize incoming data where appropriate.</li>
+            <li>Use HTTPS in production.</li>
+            <li>Use Helmet to set security-related HTTP headers.</li>
+            <li>Apply rate limiting to sensitive endpoints such as login.</li>
+            <li>Use structured logging and centralized error handling.</li>
+            <li>Keep dependencies updated and remove unused packages.</li>
+            <li>Use a persistent database connection and handle startup failures.</li>
+            <li>Do not return database credentials, stack traces, or sensitive internal information to clients.</li>
+            <li>Use a production-ready session store if sessions are required.</li>
+        </ul>
+
+        <pre><code>
+npm install helmet express-rate-limit
+        </code></pre>
+
+        <pre><code>
+const helmet = require("helmet");
+const rateLimit = require("express-rate-limit");
+
+app.use(helmet());
+
+const loginLimiter = rateLimit({
+    windowMs: 15 * 60 * 1000,
+    limit: 10,
+    standardHeaders: "draft-7",
+    legacyHeaders: false
+});
+
+app.use("/login", loginLimiter);
+        </code></pre>
+
+        <p>
+            Adjust rate limits to your application's requirements.
+            Reverse-proxy deployments may also require correctly
+            configuring Express's <code>trust proxy</code> setting.
+        </p>
+
+
+        <!-- 23. Useful Methods -->
+        <h2>23. Useful Express Methods</h2>
+
+        <ul>
+            <li><strong>app.use():</strong> Registers middleware.</li>
+            <li><strong>app.get():</strong> Handles GET requests.</li>
+            <li><strong>app.post():</strong> Handles POST requests.</li>
+            <li><strong>app.put():</strong> Handles PUT requests.</li>
+            <li><strong>app.patch():</strong> Handles PATCH requests.</li>
+            <li><strong>app.delete():</strong> Handles DELETE requests.</li>
+            <li><strong>app.listen():</strong> Starts the server.</li>
+            <li><strong>express.Router():</strong> Creates a modular router.</li>
+            <li><strong>express.json():</strong> Parses incoming JSON request bodies.</li>
+            <li><strong>express.static():</strong> Serves static files.</li>
+            <li><strong>req.params:</strong> Reads route parameters.</li>
+            <li><strong>req.query:</strong> Reads query parameters.</li>
+            <li><strong>req.body:</strong> Accesses parsed body data.</li>
+            <li><strong>res.json():</strong> Sends JSON.</li>
+            <li><strong>res.status():</strong> Sets the response status code.</li>
+            <li><strong>next():</strong> Passes control to the next handler or error middleware.</li>
+        </ul>
+
+
+        <!-- 24. Final Tips -->
+        <h2>24. Important Tips</h2>
+
+        <ul>
+            <li>Keep routes, controllers, services, and database models separate as the project grows.</li>
+            <li>Validate request data before saving it.</li>
+            <li>Use async/await for readable asynchronous code.</li>
+            <li>Handle errors centrally and return appropriate status codes.</li>
+            <li>Never store plaintext passwords.</li>
+            <li>Never commit your .env file.</li>
+            <li>Restrict CORS to the origins your application needs.</li>
+            <li>Do not trust user input, uploaded files, or client-provided IDs.</li>
+            <li>Use environment-specific configuration for development and production.</li>
+            <li>Test your endpoints with tools such as Postman or curl.</li>
+        </ul>
+
+    </main>
+
+    <script src="script.js"></script>
+
+</body>
+</html>

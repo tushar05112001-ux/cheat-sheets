@@ -16,7 +16,19 @@
     <main>
         <h1>Git Cheat Sheet</h1>
 
-        <h2>Configure Git</h2>
+        <p>
+            Git is a version control system that helps developers track
+            changes in their code, collaborate with others, and manage
+            different versions of a project.
+        </p>
+
+        <h2>1. Configure Git</h2>
+
+        <p>
+            <strong>Definition:</strong> Git configuration allows you to set
+            your username and email address. This information is recorded
+            with your commits to identify who made the changes.
+        </p>
 
         <pre><code>
 git config --global user.name "Your Name"
@@ -26,19 +38,47 @@ git config --global user.email "you@example.com"
 git config --list
         </code></pre>
 
-        <h2>Create Repository</h2>
+        <ul>
+            <li><strong>git config:</strong> Used to view or change Git settings.</li>
+            <li><strong>--global:</strong> Applies the setting to all repositories for your user account.</li>
+            <li><strong>git config --list:</strong> Displays the current Git configuration.</li>
+        </ul>
+
+
+        <h2>2. Create Repository</h2>
+
+        <p>
+            <strong>Definition:</strong> A repository (repo) is a place where
+            Git stores project files and tracks their history. The
+            <code>git init</code> command creates a new Git repository in
+            the current directory.
+        </p>
 
         <pre><code>
 git init
         </code></pre>
 
-        <h2>Check Status</h2>
+
+        <h2>3. Check Status</h2>
+
+        <p>
+            <strong>Definition:</strong> The status command shows which files
+            have been modified, which files are staged for a commit, and
+            which files are not yet tracked by Git.
+        </p>
 
         <pre><code>
 git status
         </code></pre>
 
-        <h2>Add Files</h2>
+
+        <h2>4. Add Files</h2>
+
+        <p>
+            <strong>Definition:</strong> Adding files means placing changes
+            in the staging area. The staging area allows you to choose which
+            changes will be included in your next commit.
+        </p>
 
         <pre><code>
 git add file.txt
@@ -48,13 +88,38 @@ git add .
 git add *.js
         </code></pre>
 
-        <h2>Commit</h2>
+        <ul>
+            <li><strong>git add file.txt:</strong> Stages a specific file.</li>
+            <li><strong>git add .:</strong> Stages changes in the current directory and its subdirectories.</li>
+            <li><strong>git add *.js:</strong> Stages matching JavaScript files in the current directory.</li>
+        </ul>
+
+
+        <h2>5. Commit</h2>
+
+        <p>
+            <strong>Definition:</strong> A commit is a snapshot of the staged
+            changes in your project. Commits help you track the history of
+            your work and understand what changed over time.
+        </p>
 
         <pre><code>
 git commit -m "Add new feature"
         </code></pre>
 
-        <h2>View Commits</h2>
+        <p>
+            The <code>-m</code> option lets you add a message describing
+            the changes included in the commit.
+        </p>
+
+
+        <h2>6. View Commits</h2>
+
+        <p>
+            <strong>Definition:</strong> Git log commands display the commit
+            history of a repository, including commit IDs, authors, dates,
+            and messages.
+        </p>
 
         <pre><code>
 git log
@@ -62,7 +127,19 @@ git log
 git log --oneline
         </code></pre>
 
-        <h2>Branches</h2>
+        <ul>
+            <li><strong>git log:</strong> Displays detailed commit history.</li>
+            <li><strong>git log --oneline:</strong> Displays each commit on a single line.</li>
+        </ul>
+
+
+        <h2>7. Branches</h2>
+
+        <p>
+            <strong>Definition:</strong> A branch is an independent line of
+            development. Branches allow you to work on new features or fix
+            bugs without directly changing the main development branch.
+        </p>
 
         <pre><code>
 git branch
@@ -74,7 +151,21 @@ git switch feature
 git switch -c feature
         </code></pre>
 
-        <h2>Merge</h2>
+        <ul>
+            <li><strong>git branch:</strong> Lists local branches.</li>
+            <li><strong>git branch feature:</strong> Creates a branch named feature.</li>
+            <li><strong>git switch feature:</strong> Switches to the feature branch.</li>
+            <li><strong>git switch -c feature:</strong> Creates and switches to a new branch.</li>
+        </ul>
+
+
+        <h2>8. Merge</h2>
+
+        <p>
+            <strong>Definition:</strong> Merging combines changes from one
+            branch into another. It is commonly used to integrate a completed
+            feature into the main branch.
+        </p>
 
         <pre><code>
 git switch main
@@ -82,7 +173,19 @@ git switch main
 git merge feature
         </code></pre>
 
-        <h2>Remote Repository</h2>
+        <p>
+            In this example, Git switches to the main branch and merges
+            the changes from the feature branch into it.
+        </p>
+
+
+        <h2>9. Remote Repository</h2>
+
+        <p>
+            <strong>Definition:</strong> A remote repository is a version of
+            your project hosted elsewhere, usually on a service such as
+            GitHub. It allows developers to share and collaborate on code.
+        </p>
 
         <pre><code>
 git remote -v
@@ -90,7 +193,19 @@ git remote -v
 git remote add origin &lt;repository-url&gt;
         </code></pre>
 
-        <h2>Push</h2>
+        <ul>
+            <li><strong>git remote -v:</strong> Displays the configured remote repository URLs.</li>
+            <li><strong>git remote add origin:</strong> Adds a remote repository with the name origin.</li>
+        </ul>
+
+
+        <h2>10. Push</h2>
+
+        <p>
+            <strong>Definition:</strong> Pushing uploads your local commits
+            to a remote repository so that your changes can be stored and
+            shared online.
+        </p>
 
         <pre><code>
 git push origin main
@@ -98,19 +213,45 @@ git push origin main
 git push -u origin main
         </code></pre>
 
-        <h2>Pull</h2>
+        <ul>
+            <li><strong>git push origin main:</strong> Pushes local main-branch commits to the remote named origin.</li>
+            <li><strong>git push -u origin main:</strong> Pushes the branch and sets its upstream branch for easier future pushes and pulls.</li>
+        </ul>
+
+
+        <h2>11. Pull</h2>
+
+        <p>
+            <strong>Definition:</strong> Pulling downloads changes from a
+            remote repository and integrates them into your current local
+            branch. It typically performs a fetch followed by a merge.
+        </p>
 
         <pre><code>
 git pull origin main
         </code></pre>
 
-        <h2>Clone</h2>
+
+        <h2>12. Clone</h2>
+
+        <p>
+            <strong>Definition:</strong> Cloning creates a local copy of an
+            existing remote repository. It downloads the project files and
+            relevant Git history so you can work on the project locally.
+        </p>
 
         <pre><code>
 git clone &lt;repository-url&gt;
         </code></pre>
 
-        <h2>Undo Changes</h2>
+
+        <h2>13. Undo Changes</h2>
+
+        <p>
+            <strong>Definition:</strong> Git provides commands to discard
+            unstaged changes or remove files from the staging area without
+            deleting their working-directory changes.
+        </p>
 
         <pre><code>
 git restore file.txt
@@ -118,7 +259,26 @@ git restore file.txt
 git restore --staged file.txt
         </code></pre>
 
-        <h2>Git Ignore</h2>
+        <ul>
+            <li><strong>git restore file.txt:</strong> Discards unstaged changes in the specified file, restoring it from the index.</li>
+            <li><strong>git restore --staged file.txt:</strong> Removes the file's changes from the staging area while keeping the changes in the working directory.</li>
+        </ul>
+
+        <p>
+            <strong>Warning:</strong> The first command can permanently discard
+            uncommitted changes to the specified file. Make sure you do not
+            need those changes before running it.
+        </p>
+
+
+        <h2>14. Git Ignore</h2>
+
+        <p>
+            <strong>Definition:</strong> A <code>.gitignore</code> file tells
+            Git which untracked files and directories to ignore. It is useful
+            for excluding dependencies, log files, and local configuration
+            files from version control.
+        </p>
 
         <pre><code>
 # .gitignore
@@ -128,9 +288,36 @@ node_modules/
 *.log
         </code></pre>
 
-	<p>
-            Never commit database passwords, API keys in
-            a public GitHub repository.
+        <ul>
+            <li><strong>node_modules/:</strong> Ignores the Node.js dependencies directory.</li>
+            <li><strong>.env:</strong> Ignores a file commonly used for environment variables.</li>
+            <li><strong>*.log:</strong> Ignores files ending in .log.</li>
+        </ul>
+
+        <p>
+            <strong>Security tip:</strong> Never commit database passwords,
+            API keys, access tokens, or other secrets to a public GitHub
+            repository. If a secret is committed, removing it from the latest
+            version may not remove it from the repository's history. Revoke
+            or rotate the exposed secret immediately.
+        </p>
+
+
+        <h2>15. Git vs GitHub</h2>
+
+        <p>
+            <strong>Git:</strong> A version control system that tracks
+            changes in files on your computer.
+        </p>
+
+        <p>
+            <strong>GitHub:</strong> An online platform for hosting Git
+            repositories and collaborating with other developers.
+        </p>
+
+        <p>
+            Git can be used without GitHub, but GitHub uses Git to manage
+            repository history and collaboration.
         </p>
 
     </main>

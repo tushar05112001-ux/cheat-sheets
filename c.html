@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>C Language Cheat Sheet</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div id="navbar"></div>
+
+    <main>
+
+        <h1>C Language Cheat Sheet</h1>
+
+        <p>
+            C is a general-purpose, procedural programming language used
+            for system programming, operating systems, embedded systems,
+            and application development. It provides low-level memory
+            access along with structured programming features.
+        </p>
+
+
+        <!-- 1. Basic Structure -->
+        <h2>1. Basic Structure of C</h2>
+
+        <p>
+            <strong>Definition:</strong> A C program consists of functions,
+            statements, and declarations. The <code>main()</code> function
+            is the entry point where program execution begins.
+        </p>
+
+        <pre><code>
+#include &lt;stdio.h&gt;
+
+int main(void) {
+    printf("Hello, World!");
+
+    return 0;
+}
+        </code></pre>
+
+        <ul>
+            <li><strong>#include:</strong> Includes a header file.</li>
+            <li><strong>stdio.h:</strong> Provides standard input and output functions such as <code>printf()</code> and <code>scanf()</code>.</li>
+            <li><strong>main():</strong> The function where program execution begins.</li>
+            <li><strong>printf():</strong> Displays formatted output.</li>
+            <li><strong>return 0:</strong> Indicates successful program termination.</li>
+        </ul>
+
+
+        <!-- 2. Variables -->
+        <h2>2. Variables</h2>
+
+        <p>
+            <strong>Definition:</strong> A variable is a named memory
+            location used to store a value that a program can access
+            and modify.
+        </p>
+
+        <pre><code>
+int age = 24;
+float price = 99.50f;
+char grade = 'A';
+double salary = 45000.75;
+        </code></pre>
+
+        <ul>
+            <li><strong>int:</strong> Stores integer values.</li>
+            <li><strong>float:</strong> Stores floating-point values.</li>
+            <li><strong>char:</strong> Stores a character value.</li>
+            <li><strong>double:</strong> Stores floating-point values with more precision than float.</li>
+        </ul>
+
+
+        <!-- 3. Data Types -->
+        <h2>3. Data Types</h2>
+
+        <p>
+            <strong>Definition:</strong> Data types specify what kind of
+            value a variable can represent and how that value is interpreted.
+        </p>
+
+        <pre><code>
+int number = 10;
+char letter = 'A';
+float percentage = 85.5f;
+double pi = 3.1415926535;
+_Bool isActive = 1;
+        </code></pre>
+
+        <ul>
+            <li><strong>char:</strong> Represents a character or a small integer value.</li>
+            <li><strong>int:</strong> Represents integer values.</li>
+            <li><strong>float:</strong> Represents single-precision floating-point values.</li>
+            <li><strong>double:</strong> Represents double-precision floating-point values.</li>
+            <li><strong>void:</strong> Represents the absence of a value or specifies a function with no parameters.</li>
+            <li><strong>_Bool:</strong> Represents the values 0 or 1. The <code>stdbool.h</code> header provides <code>bool</code>, <code>true</code>, and <code>false</code> in C99 and later.</li>
+        </ul>
+
+        <p>
+            <strong>Note:</strong> The exact size of a data type depends
+            on the compiler and platform. Use <code>sizeof()</code> to
+            check its size.
+        </p>
+
+        <pre><code>
+printf("%zu", sizeof(int));
+        </code></pre>
+
+
+        <!-- 4. Constants -->
+        <h2>4. Constants</h2>
+
+        <p>
+            <strong>Definition:</strong> Constants represent values that
+            should not be modified during normal program execution.
+            C provides the <code>const</code> qualifier and macros
+            defined using <code>#define</code>.
+        </p>
+
+        <pre><code>
+const float PI = 3.14159f;
+
+#define MAX_SIZE 100
+        </code></pre>
+
+        <ul>
+            <li><strong>const:</strong> Prevents modification through that variable or object expression.</li>
+            <li><strong>#define:</strong> Defines a preprocessor macro.</li>
+        </ul>
+
+
+        <!-- 5. Input and Output -->
+        <h2>5. Input and Output</h2>
+
+        <p>
+            <strong>Definition:</strong> Input and output operations allow
+            a program to receive information from users and display results.
+            The <code>stdio.h</code> header provides common input/output functions.
+        </p>
+
+        <pre><code>
+#include &lt;stdio.h&gt;
+
+int main(void) {
+    int age;
+
+    printf("Enter your age: ");
+    scanf("%d", &amp;age);
+
+    printf("Your age is %d", age);
+
+    return 0;
+}
+        </code></pre>
+
+        <ul>
+            <li><strong>printf():</strong> Prints formatted output.</li>
+            <li><strong>scanf():</strong> Reads formatted input.</li>
+            <li><strong>getchar():</strong> Reads one character from standard input.</li>
+            <li><strong>putchar():</strong> Writes one character to standard output.</li>
+            <li><strong>fgets():</strong> Reads a line or part of a line from a stream.</li>
+        </ul>
+
+        <p>
+            <strong>Important:</strong> Check the return value of
+            <code>scanf()</code> to ensure input was read successfully.
+            Use <code>fgets()</code> when reading text containing spaces.
+        </p>
+
+
+        <!-- 6. Format Specifiers -->
+        <h2>6. Format Specifiers</h2>
+
+        <p>
+            <strong>Definition:</strong> Format specifiers tell functions
+            such as <code>printf()</code> and <code>scanf()</code> what
+            type of value is being printed or read.
+        </p>
+
+        <pre><code>
+int age = 24;
+float price = 10.5f;
+char grade = 'A';
+double value = 3.14159;
+
+printf("%d", age);
+printf("%f", price);
+printf("%c", grade);
+printf("%f", value);
+printf("%s", "Hello");
+        </code></pre>
+
+        <ul>
+            <li><strong>%d:</strong> Prints or reads an int.</li>
+            <li><strong>%f:</strong> Prints a floating-point value; in scanf, it reads a float through a float pointer.</li>
+            <li><strong>%lf:</strong> In scanf, reads a double through a double pointer. In printf, %f is used for double.</li>
+            <li><strong>%c:</strong> Prints or reads a character.</li>
+            <li><strong>%s:</strong> Prints or reads a character string. Ensure the destination buffer has enough space when using scanf.</li>
+            <li><strong>%u:</strong> Prints or reads an unsigned int.</li>
+            <li><strong>%ld:</strong> Prints or reads a long int.</li>
+            <li><strong>%zu:</strong> Used for values of type size_t, such as the result of sizeof.</li>
+            <li><strong>%p:</strong> Prints a pointer value.</li>
+        </ul>
+
+
+        <!-- 7. Operators -->
+        <h2>7. Operators</h2>
+
+        <p>
+            <strong>Definition:</strong> Operators are symbols that perform
+            operations on variables and values.
+        </p>
+
+        <pre><code>
+int a = 10;
+int b = 3;
+
+printf("%d", a + b);
+printf("%d", a - b);
+printf("%d", a * b);
+printf("%d", a / b);
+printf("%d", a % b);
+        </code></pre>
+
+        <ul>
+            <li><strong>Arithmetic:</strong> <code>+ - * / %</code></li>
+            <li><strong>Relational:</strong> <code>== != &gt; &lt; &gt;= &lt;=</code></li>
+            <li><strong>Logical:</strong> <code>&amp;&amp; || !</code></li>
+            <li><strong>Assignment:</strong> <code>= += -= *= /= %=</code></li>
+            <li><strong>Increment and decrement:</strong> <code>++ --</code></li>
+            <li><strong>Bitwise:</strong> <code>&amp; | ^ ~ &lt;&lt; &gt;&gt;</code></li>
+            <li><strong>Conditional:</strong> <code>condition ? value1 : value2</code></li>
+        </ul>
+
+        <p>
+            <strong>Note:</strong> Integer division discards the fractional
+            part. For example, <code>10 / 3</code> produces <code>3</code>.
+        </p>
+
+
+        <!-- 8. Conditions -->
+        <h2>8. Conditions</h2>
+
+        <p>
+            <strong>Definition:</strong> Conditional statements allow a
+            program to make decisions and execute different code depending
+            on whether a condition is true or false.
+        </p>
+
+        <pre><code>
+int age = 20;
+
+if (age >= 18) {
+    printf("Adult");
+} else {
+    printf("Minor");
+}
+        </code></pre>
+
+        <ul>
+            <li><strong>if:</strong> Executes code when a condition is true.</li>
+            <li><strong>else:</strong> Executes code when the if condition is false.</li>
+            <li><strong>else if:</strong> Checks another condition.</li>
+            <li><strong>switch:</strong> Selects a branch based on an integer, character, or enumeration value.</li>
+        </ul>
+
+        <pre><code>
+int choice = 2;
+
+switch (choice) {
+    case 1:
+        printf("One");
+        break;
+
+    case 2:
+        printf("Two");
+        break;
+
+    default:
+        printf("Other");
+}
+        </code></pre>
+
+
+        <!-- 9. Loops -->
+        <h2>9. Loops</h2>
+
+        <p>
+            <strong>Definition:</strong> Loops repeatedly execute a block
+            of code while a condition remains true or until a sequence
+            of operations is completed.
+        </p>
+
+        <pre><code>
+for (int i = 0; i < 5; i++) {
+    printf("%d\n", i);
+}
+
+int j = 0;
+
+while (j < 5) {
+    printf("%d\n", j);
+    j++;
+}
+
+int k = 0;
+
+do {
+    printf("%d\n", k);
+    k++;
+} while (k < 5);
+        </code></pre>
+
+        <ul>
+            <li><strong>for:</strong> Useful when initialization, condition, and update can be written together.</li>
+            <li><strong>while:</strong> Repeats while a condition is true.</li>
+            <li><strong>do...while:</strong> Executes its body at least once before checking the condition.</li>
+            <li><strong>break:</strong> Exits the nearest loop or switch statement.</li>
+            <li><strong>continue:</strong> Skips to the next loop iteration.</li>
+        </ul>
+
+
+        <!-- 10. Functions -->
+        <h2>10. Functions</h2>
+
+        <p>
+            <strong>Definition:</strong> A function is a reusable block
+            of code that performs a specific task. It can accept parameters
+            and return a value.
+        </p>
+
+        <pre><code>
+#include &lt;stdio.h&gt;
+
+int add(int a, int b) {
+    return a + b;
+}
+
+int main(void) {
+    int result = add(5, 3);
+
+    printf("%d", result);
+
+    return 0;
+}
+        </code></pre>
+
+        <ul>
+            <li><strong>Function declaration:</strong> Announces a function's name, return type, and parameter types.</li>
+            <li><strong>Function definition:</strong> Contains the implementation of a function.</li>
+            <li><strong>Parameters:</strong> Variables that receive argument values.</li>
+            <li><strong>Arguments:</strong> Values supplied when calling a function.</li>
+            <li><strong>return:</strong> Returns a value or ends a void function.</li>
+            <li><strong>void:</strong> Indicates that a function does not return a value when used as its return type.</li>
+        </ul>
+
+
+        <!-- 11. Arrays -->
+        <h2>11. Arrays</h2>
+
+        <p>
+            <strong>Definition:</strong> An array stores multiple elements
+            of the same type in contiguous memory locations. Array indexing
+            starts at zero.
+        </p>
+
+        <pre><code>
+int numbers[5] = {10, 20, 30, 40, 50};
+
+printf("%d", numbers[0]);
+
+numbers[1] = 25;
+        </code></pre>
+
+        <ul>
+            <li><strong>Declaration:</strong> <code>int numbers[5];</code> creates an array of five integers.</li>
+            <li><strong>Initialization:</strong> Assigns initial values to array elements.</li>
+            <li><strong>Indexing:</strong> Accesses an element using its position.</li>
+            <li><strong>Traversal:</strong> Uses a loop to process array elements.</li>
+        </ul>
+
+        <p>
+            <strong>Important:</strong> C does not automatically check
+            array bounds. Accessing an element outside the array's valid
+            range causes undefined behavior.
+        </p>
+
+
+        <!-- 12. Strings -->
+        <h2>12. Strings</h2>
+
+        <p>
+            <strong>Definition:</strong> C does not have a built-in string
+            data type. A string is usually stored as an array of characters
+            terminated by the null character <code>'\0'</code>.
+        </p>
+
+        <pre><code>
+#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+
+int main(void) {
+    char name[] = "Tushar";
+
+    printf("%s\n", name);
+    printf("%zu\n", strlen(name));
+
+    return 0;
+}
+        </code></pre>
+
+        <ul>
+            <li><strong>strlen():</strong> Returns the number of characters before the terminating null character.</li>
+            <li><strong>strcpy():</strong> Copies a string into a destination buffer that must be large enough.</li>
+            <li><strong>strcat():</strong> Appends a string to a destination buffer with sufficient capacity.</li>
+            <li><strong>strcmp():</strong> Compares two strings lexicographically.</li>
+            <li><strong>strchr():</strong> Searches for a character in a string.</li>
+        </ul>
+
+        <p>
+            These string functions are declared in <code>string.h</code>.
+            Ensure destination buffers are large enough to avoid
+            writing beyond their boundaries.
+        </p>
+
+
+        <!-- 13. Pointers -->
+        <h2>13. Pointers</h2>
+
+        <p>
+            <strong>Definition:</strong> A pointer is a variable that stores
+            the address of an object or function, or a null pointer value.
+            Pointers are commonly used for arrays, dynamic memory, and
+            passing addresses to functions.
+        </p>
+
+        <pre><code>
+int number = 10;
+
+int *ptr = &amp;number;
+
+printf("%d\n", number);
+printf("%p\n", (void *)ptr);
+printf("%d\n", *ptr);
+        </code></pre>
+
+        <ul>
+            <li><strong>&amp;:</strong> The address-of operator obtains an object's address.</li>
+            <li><strong>* in a declaration:</strong> Declares a pointer type, such as <code>int *ptr</code>.</li>
+            <li><strong>* in an expression:</strong> Dereferences a valid pointer to access the pointed-to object.</li>
+            <li><strong>NULL:</strong> Represents a null pointer constant.</li>
+        </ul>
+
+        <p>
+            <strong>Important:</strong> Never dereference a null,
+            uninitialized, or otherwise invalid pointer.
+        </p>
+
+
+        <!-- 14. Structures -->
+        <h2>14. Structures</h2>
+
+        <p>
+            <strong>Definition:</strong> A structure groups variables of
+            different data types under one type. It is useful for
+            representing related information.
+        </p>
+
+        <pre><code>
+#include &lt;stdio.h&gt;
+
+struct Student {
+    char name[50];
+    int age;
+    float marks;
+};
+
+int main(void) {
+    struct Student s = {"Tushar", 24, 85.5f};
+
+    printf("%s\n", s.name);
+    printf("%d\n", s.age);
+    printf("%.1f\n", s.marks);
+
+    return 0;
+}
+        </code></pre>
+
+        <ul>
+            <li><strong>struct:</strong> Defines a structure type.</li>
+            <li><strong>Dot operator (.):</strong> Accesses a member of a structure object.</li>
+            <li><strong>Arrow operator (-&gt;):</strong> Accesses a member through a pointer to a structure.</li>
+            <li><strong>typedef:</strong> Creates a type alias.</li>
+        </ul>
+
+
+        <!-- 15. Unions and Enums -->
+        <h2>15. Unions and Enumerations</h2>
+
+        <p>
+            <strong>Union definition:</strong> A union allows different
+            members to share the same memory storage.
+        </p>
+
+        <pre><code>
+union Data {
+    int number;
+    float value;
+};
+
+union Data data;
+
+data.number = 10;
+        </code></pre>
+
+        <p>
+            <strong>Enumeration definition:</strong> An enum defines
+            named integer constants that make code easier to read.
+        </p>
+
+        <pre><code>
+enum Day {
+    MONDAY,
+    TUESDAY,
+    WEDNESDAY
+};
+
+enum Day today = TUESDAY;
+        </code></pre>
+
+
+        <!-- 16. Dynamic Memory -->
+        <h2>16. Dynamic Memory Allocation</h2>
+
+        <p>
+            <strong>Definition:</strong> Dynamic memory allocation
+            allows a program to request memory while it is running.
+            The functions are declared in <code>stdlib.h</code>.
+        </p>
+
+        <pre><code>
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+int main(void) {
+    int *numbers = malloc(5 * sizeof *numbers);
+
+    if (numbers == NULL) {
+        return 1;
+    }
+
+    numbers[0] = 10;
+
+    printf("%d\n", numbers[0]);
+
+    free(numbers);
+
+    return 0;
+}
+        </code></pre>
+
+        <ul>
+            <li><strong>malloc():</strong> Allocates memory without initializing its contents.</li>
+            <li><strong>calloc():</strong> Allocates memory for multiple elements and initializes all bytes to zero.</li>
+            <li><strong>realloc():</strong> Changes the size of an allocated memory block.</li>
+            <li><strong>free():</strong> Releases dynamically allocated memory.</li>
+        </ul>
+
+        <p>
+            Always check allocation results before using the returned
+            pointer. Release allocated memory when it is no longer needed,
+            and never access it after it has been freed.
+        </p>
+
+
+        <!-- 17. File Handling -->
+        <h2>17. File Handling</h2>
+
+        <p>
+            <strong>Definition:</strong> File handling allows a program
+            to create, read, write, and close files stored on a device.
+        </p>
+
+        <pre><code>
+#include &lt;stdio.h&gt;
+
+int main(void) {
+    FILE *file = fopen("data.txt", "w");
+
+    if (file == NULL) {
+        perror("Unable to open file");
+        return 1;
+    }
+
+    fprintf(file, "Hello, C!");
+
+    fclose(file);
+
+    return 0;
+}
+        </code></pre>
+
+        <ul>
+            <li><strong>fopen():</strong> Opens a file using a specified mode.</li>
+            <li><strong>fprintf():</strong> Writes formatted text to a file.</li>
+            <li><strong>fscanf():</strong> Reads formatted data from a file.</li>
+            <li><strong>fgets():</strong> Reads a line or part of a line from a file.</li>
+            <li><strong>fclose():</strong> Closes an opened file.</li>
+            <li><strong>perror():</strong> Prints an error message associated with the current value of errno.</li>
+        </ul>
+
+        <p>
+            Common file modes include <code>r</code> for reading,
+            <code>w</code> for writing, and <code>a</code> for appending.
+            Writing with mode <code>w</code> truncates an existing file.
+        </p>
+
+
+        <!-- 18. Preprocessor -->
+        <h2>18. Preprocessor Directives</h2>
+
+        <p>
+            <strong>Definition:</strong> Preprocessor directives are
+            instructions processed before the main compilation stage.
+            They commonly include headers and define macros.
+        </p>
+
+        <pre><code>
+#include &lt;stdio.h&gt;
+
+#define MAX 100
+
+#ifndef MAX
+#define MAX 50
+#endif
+        </code></pre>
+
+        <ul>
+            <li><strong>#include:</strong> Includes header contents.</li>
+            <li><strong>#define:</strong> Defines a macro.</li>
+            <li><strong>#ifdef:</strong> Checks whether a macro is defined.</li>
+            <li><strong>#ifndef:</strong> Checks whether a macro is not defined.</li>
+            <li><strong>#endif:</strong> Ends a conditional preprocessor section.</li>
+        </ul>
+
+
+        <!-- 19. Storage Classes -->
+        <h2>19. Storage Duration and Scope</h2>
+
+        <p>
+            <strong>Definition:</strong> Scope determines where an
+            identifier can be accessed. Storage duration determines
+            how long an object's storage exists.
+        </p>
+
+        <pre><code>
+int globalValue = 10;
+
+void example(void) {
+    int localValue = 20;
+    static int count = 0;
+
+    count++;
+
+    printf("%d %d %d\n",
+           globalValue, localValue, count);
+}
+        </code></pre>
+
+        <ul>
+            <li><strong>Local variable:</strong> Typically has block scope and automatic storage duration.</li>
+            <li><strong>Global variable:</strong> Declared outside functions and usually has file scope.</li>
+            <li><strong>static local variable:</strong> Retains its value between function calls.</li>
+            <li><strong>extern:</strong> Declares an identifier that may be defined elsewhere.</li>
+            <li><strong>register:</strong> A storage-class specifier with limited practical use in modern C.</li>
+        </ul>
+
+
+        <!-- 20. Type Casting -->
+        <h2>20. Type Casting</h2>
+
+        <p>
+            <strong>Definition:</strong> Type casting converts a value
+            from one data type to another.
+        </p>
+
+        <pre><code>
+int a = 5;
+int b = 2;
+
+float result1 = a / b;
+float result2 = (float)a / b;
+
+printf("%f\n", result1);
+printf("%f\n", result2);
+        </code></pre>
+
+        <p>
+            The first result is <code>2.000000</code> because integer
+            division happens before conversion to float. The second
+            result is <code>2.500000</code> because <code>a</code> is
+            converted to float before division.
+        </p>
+
+
+        <!-- 21. Common Header Files -->
+        <h2>21. Common Header Files</h2>
+
+        <p>
+            <strong>Definition:</strong> Header files provide declarations
+            for functions, types, and macros that a program can use.
+        </p>
+
+        <ul>
+            <li><strong>stdio.h:</strong> Standard input and output.</li>
+            <li><strong>stdlib.h:</strong> Memory allocation, conversions, and general utilities.</li>
+            <li><strong>string.h:</strong> String and memory manipulation functions.</li>
+            <li><strong>math.h:</strong> Mathematical functions such as <code>sqrt()</code> and <code>pow()</code>.</li>
+            <li><strong>ctype.h:</strong> Character testing and conversion functions.</li>
+            <li><strong>stdbool.h:</strong> Boolean aliases and constants in C99 and later.</li>
+            <li><strong>time.h:</strong> Date and time utilities.</li>
+            <li><strong>limits.h:</strong> Integer type limits.</li>
+            <li><strong>float.h:</strong> Floating-point type characteristics.</li>
+        </ul>
+
+
+        <!-- 22. Comments -->
+        <h2>22. Comments</h2>
+
+        <p>
+            <strong>Definition:</strong> Comments explain code to human
+            readers. The compiler ignores comments during normal compilation.
+        </p>
+
+        <pre><code>
+// This is a single-line comment.
+
+/*
+   This is a
+   multi-line comment.
+*/
+
+int age = 24;
+        </code></pre>
+
+
+        <!-- 23. Compilation -->
+        <h2>23. Compile and Run a C Program</h2>
+
+        <p>
+            <strong>Definition:</strong> Compilation translates C source
+            code into an executable program that can be run on a compatible
+            system.
+        </p>
+
+        <pre><code>
+gcc main.c -o main
+
+./main
+        </code></pre>
+
+        <p>
+            On Windows, the executable may be run using:
+        </p>
+
+        <pre><code>
+gcc main.c -o main.exe
+
+main.exe
+        </code></pre>
+
+        <ul>
+            <li><strong>gcc:</strong> Invokes the GNU C compiler.</li>
+            <li><strong>main.c:</strong> The C source file.</li>
+            <li><strong>-o:</strong> Specifies the output filename.</li>
+            <li><strong>./main:</strong> Runs the executable on Linux or macOS.</li>
+        </ul>
+
+
+        <!-- 24. Common Escape Sequences -->
+        <h2>24. Escape Sequences</h2>
+
+        <p>
+            <strong>Definition:</strong> Escape sequences represent
+            special characters inside character and string literals.
+        </p>
+
+        <pre><code>
+printf("Hello\nWorld");
+printf("Name:\tTushar");
+printf("He said \"Hello\"");
+printf("Backslash: \\");
+        </code></pre>
+
+        <ul>
+            <li><strong>\n:</strong> New line.</li>
+            <li><strong>\t:</strong> Horizontal tab.</li>
+            <li><strong>\\:</strong> Backslash character.</li>
+            <li><strong>\":</strong> Double quotation mark inside a string.</li>
+            <li><strong>\':</strong> Single quotation mark.</li>
+            <li><strong>\0:</strong> Null character.</li>
+        </ul>
+
+
+        <!-- 25. Important Tips -->
+        <h2>25. Important Tips</h2>
+
+        <ul>
+            <li>End statements with a semicolon where required.</li>
+            <li>Use meaningful variable and function names.</li>
+            <li>Initialize variables before reading their values.</li>
+            <li>Check array boundaries before accessing elements.</li>
+            <li>Check the return values of input, file, and memory allocation functions.</li>
+            <li>Free dynamically allocated memory when it is no longer needed.</li>
+            <li>Use <code>fgets()</code> for safer line-based text input.</li>
+            <li>Compile with warnings enabled, for example <code>gcc -Wall -Wextra -Wpedantic main.c -o main</code>.</li>
+            <li>Avoid undefined behavior, such as dereferencing invalid pointers or accessing arrays out of bounds.</li>
+        </ul>
+
+    </main>
+
+    <script src="script.js"></script>
+
+</body>
+</html>

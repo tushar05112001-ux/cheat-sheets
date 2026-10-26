@@ -16,7 +16,22 @@
     <main>
         <h1>JavaScript Cheat Sheet</h1>
 
-        <h2>Variables</h2>
+        <p>
+            JavaScript is a programming language used to make websites
+            interactive and dynamic. It can handle user interactions,
+            manipulate webpage content, validate forms, and communicate
+            with servers.
+        </p>
+
+        <!-- Variables -->
+        <h2>1. Variables</h2>
+
+        <p>
+            <strong>Definition:</strong> Variables are containers used to
+            store data in a program. JavaScript provides three keywords
+            for declaring variables: <code>let</code>, <code>const</code>,
+            and <code>var</code>.
+        </p>
 
         <pre><code>
 let name = "Tushar";
@@ -24,7 +39,27 @@ const age = 24;
 var city = "Delhi";
         </code></pre>
 
-        <h2>Data Types</h2>
+        <ul>
+            <li><strong>let:</strong> Declares a block-scoped variable that can be reassigned.</li>
+            <li><strong>const:</strong> Declares a block-scoped variable that cannot be reassigned.</li>
+            <li><strong>var:</strong> Declares a function-scoped variable. It is generally avoided in modern JavaScript.</li>
+        </ul>
+
+        <p>
+            <strong>Note:</strong> A <code>const</code> object or array can
+            still have its properties or elements changed, even though
+            the variable cannot be reassigned.
+        </p>
+
+
+        <!-- Data Types -->
+        <h2>2. Data Types</h2>
+
+        <p>
+            <strong>Definition:</strong> Data types describe the kind of
+            value a variable contains. JavaScript has primitive data types
+            and the Object type.
+        </p>
 
         <pre><code>
 String
@@ -38,13 +73,66 @@ Symbol
 BigInt
         </code></pre>
 
-        <h2>Input</h2>
+        <ul>
+            <li><strong>String:</strong> Represents text, such as "Hello".</li>
+            <li><strong>Number:</strong> Represents integers and decimal numbers, such as 10 or 3.14.</li>
+            <li><strong>Boolean:</strong> Represents either true or false.</li>
+            <li><strong>Undefined:</strong> Represents a variable that has been declared but has not been assigned a value.</li>
+            <li><strong>Null:</strong> Represents an intentional absence of a value.</li>
+            <li><strong>Object:</strong> Stores related data as properties and values.</li>
+            <li><strong>Array:</strong> Stores an ordered collection of values. Arrays are a type of object.</li>
+            <li><strong>Symbol:</strong> Represents a unique identifier.</li>
+            <li><strong>BigInt:</strong> Represents integers larger than the range supported by the Number type.</li>
+        </ul>
+
+        <pre><code>
+let username = "Tushar";  // String
+let score = 100;          // Number
+let isActive = true;      // Boolean
+let result;               // Undefined
+let selected = null;      // Null
+        </code></pre>
+
+
+        <!-- Input -->
+        <h2>3. Input</h2>
+
+        <p>
+            <strong>Definition:</strong> Input allows a program to receive
+            data from users. In a webpage, JavaScript can read the value
+            entered into an HTML input field using the DOM.
+        </p>
 
         <pre><code>
 const value = document.querySelector("#input").value;
         </code></pre>
 
-        <h2>Conditions</h2>
+        <p>
+            <strong>Explanation:</strong>
+        </p>
+
+        <ul>
+            <li><code>document.querySelector("#input")</code> selects the element with the ID "input".</li>
+            <li><code>.value</code> retrieves the current value entered by the user.</li>
+        </ul>
+
+        <p>
+            Example HTML:
+        </p>
+
+        <pre><code>
+&lt;input type="text" id="input" placeholder="Enter your name"&gt;
+        </code></pre>
+
+
+        <!-- Conditions -->
+        <h2>4. Conditions</h2>
+
+        <p>
+            <strong>Definition:</strong> Conditional statements allow a
+            program to make decisions. They execute different blocks of
+            code depending on whether a condition is true or false.
+        </p>
 
         <pre><code>
 if (age >= 18) {
@@ -54,7 +142,41 @@ if (age >= 18) {
 }
         </code></pre>
 
-        <h2>Loops</h2>
+        <ul>
+            <li><strong>if:</strong> Executes code when a condition is true.</li>
+            <li><strong>else:</strong> Executes code when the if condition is false.</li>
+            <li><strong>else if:</strong> Checks another condition when the previous condition is false.</li>
+        </ul>
+
+        <p>
+            You can also use the <code>switch</code> statement when you
+            need to compare one value against several possible cases.
+        </p>
+
+        <pre><code>
+const day = "Monday";
+
+switch (day) {
+    case "Monday":
+        console.log("Start of the week");
+        break;
+    case "Friday":
+        console.log("Almost the weekend");
+        break;
+    default:
+        console.log("Another day");
+}
+        </code></pre>
+
+
+        <!-- Loops -->
+        <h2>5. Loops</h2>
+
+        <p>
+            <strong>Definition:</strong> Loops repeatedly execute a block
+            of code while a condition is satisfied or until a sequence
+            has been processed.
+        </p>
 
         <pre><code>
 for (let i = 0; i < 5; i++) {
@@ -66,7 +188,23 @@ while (condition) {
 }
         </code></pre>
 
-        <h2>Functions</h2>
+        <ul>
+            <li><strong>for loop:</strong> Repeats code with initialization, a condition, and an update expression.</li>
+            <li><strong>while loop:</strong> Repeats code as long as its condition remains true.</li>
+            <li><strong>do...while loop:</strong> Executes the code at least once before checking the condition.</li>
+            <li><strong>for...of:</strong> Iterates over values in iterable objects, such as arrays and strings.</li>
+            <li><strong>for...in:</strong> Iterates over enumerable property keys of an object.</li>
+        </ul>
+
+
+        <!-- Functions -->
+        <h2>6. Functions</h2>
+
+        <p>
+            <strong>Definition:</strong> A function is a reusable block of
+            code designed to perform a particular task. Functions can
+            accept inputs called parameters and return an output.
+        </p>
 
         <pre><code>
 function add(a, b) {
@@ -78,7 +216,28 @@ const multiply = (a, b) => {
 };
         </code></pre>
 
-        <h2>Arrays</h2>
+        <ul>
+            <li><strong>Function declaration:</strong> Defines a function using the function keyword.</li>
+            <li><strong>Parameters:</strong> Variables that receive values passed to a function.</li>
+            <li><strong>Arguments:</strong> Actual values supplied when calling a function.</li>
+            <li><strong>return:</strong> Sends a result back to the caller.</li>
+            <li><strong>Arrow function:</strong> A shorter function syntax that uses the <code>=&gt;</code> operator.</li>
+        </ul>
+
+        <pre><code>
+console.log(add(5, 3));       // 8
+console.log(multiply(4, 2));  // 8
+        </code></pre>
+
+
+        <!-- Arrays -->
+        <h2>7. Arrays</h2>
+
+        <p>
+            <strong>Definition:</strong> An array is a data structure used
+            to store multiple values in an ordered list. Each element has
+            an index, starting from zero.
+        </p>
 
         <pre><code>
 const fruits = ["Apple", "Banana", "Mango"];
@@ -91,7 +250,34 @@ fruits.map(item => console.log(item));
 fruits.filter(item => item !== "Apple");
         </code></pre>
 
-        <h2>Objects</h2>
+        <ul>
+            <li><strong>push():</strong> Adds an element to the end of an array.</li>
+            <li><strong>pop():</strong> Removes and returns the last element.</li>
+            <li><strong>map():</strong> Creates a new array by transforming each element.</li>
+            <li><strong>filter():</strong> Creates a new array containing elements that satisfy a condition.</li>
+            <li><strong>length:</strong> Returns the number of elements in an array.</li>
+            <li><strong>find():</strong> Returns the first element that satisfies a condition.</li>
+            <li><strong>includes():</strong> Checks whether an array contains a specified value.</li>
+        </ul>
+
+        <pre><code>
+const numbers = [1, 2, 3, 4, 5];
+
+console.log(numbers.length);               // 5
+console.log(numbers.includes(3));          // true
+console.log(numbers.map(n => n * 2));      // [2, 4, 6, 8, 10]
+console.log(numbers.filter(n => n > 3));   // [4, 5]
+        </code></pre>
+
+
+        <!-- Objects -->
+        <h2>8. Objects</h2>
+
+        <p>
+            <strong>Definition:</strong> An object stores related information
+            as key-value pairs. It is useful for representing real-world
+            entities, such as users, products, and employees.
+        </p>
 
         <pre><code>
 const user = {
@@ -102,7 +288,36 @@ const user = {
 console.log(user.name);
         </code></pre>
 
-        <h2>DOM</h2>
+        <ul>
+            <li><strong>Properties:</strong> Named values stored inside an object.</li>
+            <li><strong>Dot notation:</strong> Accesses a property using its name, such as <code>user.name</code>.</li>
+            <li><strong>Bracket notation:</strong> Accesses a property using brackets, such as <code>user["age"]</code>.</li>
+            <li><strong>Methods:</strong> Functions stored as object properties.</li>
+        </ul>
+
+        <pre><code>
+const product = {
+    name: "Laptop",
+    price: 50000,
+
+    displayInfo() {
+        console.log(this.name, this.price);
+    }
+};
+
+product.displayInfo();
+        </code></pre>
+
+
+        <!-- DOM -->
+        <h2>9. DOM (Document Object Model)</h2>
+
+        <p>
+            <strong>Definition:</strong> The DOM is a programming interface
+            that represents an HTML document as a tree of objects.
+            JavaScript uses it to access, change, add, and remove webpage
+            elements.
+        </p>
 
         <pre><code>
 const element = document.querySelector("#title");
@@ -116,11 +331,43 @@ element.addEventListener("click", () => {
 });
         </code></pre>
 
-        <h2>Fetch API</h2>
+        <ul>
+            <li><strong>querySelector():</strong> Selects the first element matching a CSS selector.</li>
+            <li><strong>textContent:</strong> Gets or sets the text content of an element.</li>
+            <li><strong>classList.add():</strong> Adds a CSS class to an element.</li>
+            <li><strong>addEventListener():</strong> Runs a function when a specified event occurs.</li>
+            <li><strong>innerHTML:</strong> Gets or sets an element's HTML content. Use carefully with untrusted input.</li>
+            <li><strong>createElement():</strong> Creates a new HTML element.</li>
+        </ul>
+
+        <p>
+            Example HTML:
+        </p>
+
+        <pre><code>
+&lt;h2 id="title"&gt;Original Title&lt;/h2&gt;
+&lt;button id="btn"&gt;Click Me&lt;/button&gt;
+        </code></pre>
+
+
+        <!-- Fetch API -->
+        <h2>10. Fetch API</h2>
+
+        <p>
+            <strong>Definition:</strong> The Fetch API allows JavaScript
+            to make HTTP requests to servers. It is commonly used to
+            retrieve data from APIs and send information to a server.
+        </p>
 
         <pre><code>
 fetch("https://example.com/api")
-    .then(response => response.json())
+    .then(response => {
+        if (!response.ok) {
+            throw new Error("Request failed");
+        }
+
+        return response.json();
+    })
     .then(data => {
         console.log(data);
     })
@@ -128,6 +375,198 @@ fetch("https://example.com/api")
         console.log(error);
     });
         </code></pre>
+
+        <ul>
+            <li><strong>fetch():</strong> Sends an HTTP request and returns a Promise.</li>
+            <li><strong>Promise:</strong> Represents the eventual success or failure of an asynchronous operation.</li>
+            <li><strong>response.ok:</strong> Indicates whether the HTTP status is in the 200–299 range.</li>
+            <li><strong>response.json():</strong> Reads the response body and parses it as JSON.</li>
+            <li><strong>then():</strong> Handles a fulfilled Promise.</li>
+            <li><strong>catch():</strong> Handles errors or rejected Promises in the chain.</li>
+        </ul>
+
+        <p>
+            <strong>Important:</strong> Fetch does not automatically reject
+            its Promise for HTTP errors such as 404 or 500. Check
+            <code>response.ok</code> to handle those responses.
+        </p>
+
+
+        <!-- Async/Await -->
+        <h2>11. Async and Await</h2>
+
+        <p>
+            <strong>Definition:</strong> Async and await provide a more
+            readable way to work with Promises. They are commonly used
+            when fetching data from APIs or performing other asynchronous
+            operations.
+        </p>
+
+        <pre><code>
+async function getData() {
+    try {
+        const response = await fetch("https://example.com/api");
+
+        if (!response.ok) {
+            throw new Error("Request failed");
+        }
+
+        const data = await response.json();
+
+        console.log(data);
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+getData();
+        </code></pre>
+
+        <ul>
+            <li><strong>async:</strong> Declares a function that returns a Promise.</li>
+            <li><strong>await:</strong> Waits for a Promise to settle before continuing inside the async function.</li>
+            <li><strong>try...catch:</strong> Handles errors that occur during execution.</li>
+        </ul>
+
+
+        <!-- Events -->
+        <h2>12. Events</h2>
+
+        <p>
+            <strong>Definition:</strong> Events are actions or occurrences
+            detected by the browser, such as clicks, keyboard input,
+            form submissions, and page loading. JavaScript can respond
+            to these events.
+        </p>
+
+        <pre><code>
+const button = document.querySelector("#btn");
+
+button.addEventListener("click", () => {
+    alert("Button clicked!");
+});
+        </code></pre>
+
+        <ul>
+            <li><strong>click:</strong> Occurs when an element is clicked.</li>
+            <li><strong>input:</strong> Occurs when the value of an input element changes through user interaction.</li>
+            <li><strong>submit:</strong> Occurs when a form is submitted.</li>
+            <li><strong>keydown:</strong> Occurs when a key is pressed.</li>
+            <li><strong>change:</strong> Occurs when an input's value change is committed.</li>
+        </ul>
+
+
+        <!-- Error Handling -->
+        <h2>13. Error Handling</h2>
+
+        <p>
+            <strong>Definition:</strong> Error handling allows you to
+            detect and manage errors so that your program can respond
+            appropriately instead of failing unexpectedly.
+        </p>
+
+        <pre><code>
+try {
+    let result = 10 / 0;
+
+    console.log(result);
+} catch (error) {
+    console.error("An error occurred:", error);
+} finally {
+    console.log("Execution completed");
+}
+        </code></pre>
+
+        <ul>
+            <li><strong>try:</strong> Contains code that may throw an error.</li>
+            <li><strong>catch:</strong> Handles an error thrown in the try block.</li>
+            <li><strong>finally:</strong> Runs after try and catch, whether an error occurred or not.</li>
+            <li><strong>throw:</strong> Creates an error or throws another value explicitly.</li>
+        </ul>
+
+        <p>
+            Note that dividing a JavaScript number by zero returns
+            <code>Infinity</code>; it does not throw an error by itself.
+        </p>
+
+
+        <!-- Local Storage -->
+        <h2>14. Local Storage</h2>
+
+        <p>
+            <strong>Definition:</strong> Local Storage is a browser feature
+            that allows websites to store key-value pairs on a user's
+            device. The data normally remains available after the browser
+            is closed and reopened.
+        </p>
+
+        <pre><code>
+localStorage.setItem("username", "Tushar");
+
+const username = localStorage.getItem("username");
+
+console.log(username);
+
+localStorage.removeItem("username");
+
+// Remove all entries for this website:
+// localStorage.clear();
+        </code></pre>
+
+        <ul>
+            <li><strong>setItem():</strong> Stores a value under a specified key.</li>
+            <li><strong>getItem():</strong> Retrieves a stored value.</li>
+            <li><strong>removeItem():</strong> Removes a specific key and its value.</li>
+            <li><strong>clear():</strong> Removes all local storage entries for the current origin.</li>
+        </ul>
+
+        <p>
+            Local Storage stores values as strings. Avoid storing passwords,
+            access tokens, or other sensitive information in it.
+        </p>
+
+
+        <!-- JSON -->
+        <h2>15. JSON</h2>
+
+        <p>
+            <strong>Definition:</strong> JSON (JavaScript Object Notation)
+            is a text format used to exchange structured data between
+            applications and servers.
+        </p>
+
+        <pre><code>
+const user = {
+    name: "Tushar",
+    age: 24
+};
+
+const jsonString = JSON.stringify(user);
+
+console.log(jsonString);
+
+const parsedUser = JSON.parse(jsonString);
+
+console.log(parsedUser.name);
+        </code></pre>
+
+        <ul>
+            <li><strong>JSON.stringify():</strong> Converts a JavaScript value into a JSON string.</li>
+            <li><strong>JSON.parse():</strong> Converts a valid JSON string into a JavaScript value.</li>
+        </ul>
+
+
+        <!-- Final Note -->
+        <h2>Important Tips</h2>
+
+        <ul>
+            <li>Use <code>const</code> by default and <code>let</code> when reassignment is necessary.</li>
+            <li>Use meaningful variable and function names.</li>
+            <li>Prefer strict equality (<code>===</code>) when comparing values.</li>
+            <li>Use browser developer tools to debug JavaScript.</li>
+            <li>Handle errors when working with APIs and asynchronous code.</li>
+            <li>Never expose API keys, passwords, or private credentials in client-side JavaScript.</li>
+        </ul>
 
     </main>
 
